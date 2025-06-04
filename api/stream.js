@@ -5,30 +5,33 @@ module.exports = async (req, res) => {
   try {
     const { id } = req.query;
     
-    // Step 1: Fetch the TeraBox page with proper headers
+    // Step 1: Fetch with mobile headers (bypasses bot detection)
     const { data } = await axios.get(`https://www.terabox.com/sharing/link?surl=${id}`, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9'
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; SM-G960U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.165 Mobile Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': 'https://www.terabox.com/'
       }
     });
 
-    // Step 2: New extraction method (works as of July 2024)
+    // Step 2: New extraction method
     const $ = cheerio.load(data);
-    const scriptContent = $('script:contains("video_url")').html();
+    const scriptContent = $('script:contains("pageData")').html();
     
-    // Modern regex pattern
-    const videoUrlMatch = scriptContent.match(/video_url["']:\s*["'](https?:\/\/[^"']+\.mp4)/);
+    // Modern JSON-based extraction
+    const jsonMatch = scriptContent.match(/window\.pageData\s*=\s*({.+?});/);
+    if (!jsonMatch) throw new Error('pageData not found');
     
-    if (!videoUrlMatch) {
-      throw new Error('Video URL not found in page');
-    }
+    const pageData = JSON.parse(jsonMatch[1]);
+    const videoUrl = pageData?.file_list?.[0]?.dlink;
+    
+    if (!videoUrl) throw new Error('Video URL not in pageData');
 
-    // Step 3: Return the direct URL
+    // Step 3: Return direct URL
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.json({
       status: true,
-      url: videoUrlMatch[1].replace(/\\\//g, '/')
+      url: videoUrl
     });
 
   } catch (error) {
@@ -36,7 +39,7 @@ module.exports = async (req, res) => {
       status: false,
       error: "Extraction failed",
       details: error.message,
-      tip: "TeraBox may have updated their page structure"
+      tip: "Try again or check TeraBox updates"
     });
   }
 };
