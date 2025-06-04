@@ -11,6 +11,10 @@
       "src": "/api/stream",
       "dest": "/api/stream.js",
       "methods": ["GET"]
+    },
+    {
+      "src": "/api/(.*)",
+      "status": 404
     }
   ]
 }
