@@ -1,7 +1,6 @@
 # Terabox Player Online and Video Downloader
 # How To Play Terabox Video Online Without App and Video Downloader
 
-![Visitor Count](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsaimuthu38%2Fteraboxapp&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)
 
 [![Telegram Channel](https://img.shields.io/badge/Telegram-Bot-blue.svg)](https://t.me/+kZK1-vOrDuZlNDU1)
 
