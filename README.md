@@ -10,7 +10,6 @@ A high-performance proxy server for downloading and streaming Terabox videos wit
 🌐 **Web Version**: [teraboxapps.blogspot.com](https://teraboxapps.blogspot.com/)  
 🤖 **Telegram Bot**: [@TeraboxHelperBot](https://t.me/+kZK1-vOrDuZlNDU1)
 
-![Visitor Count](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fyour-repo&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false)
 
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=your-username.your-repo)
 
