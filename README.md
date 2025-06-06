@@ -28,7 +28,7 @@ https://teraboxapps.blogspot.com/
 https://t.me/+kZK1-vOrDuZlNDU1
 
 # Self-Hosting (Developers):
-git clone https://github.com/saimuthu38/terabox-proxy.git
+git clone https://github.com/saimuthu38/teraboxapp.git
 cd terabox-proxy
 npm install
 npm start
